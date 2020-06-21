@@ -17,6 +17,6 @@ class AlexNet(nn.Module):
 ```python
 model = torch2to3.load_model('./models/alexnet.pth')
 model.keys() # dict_keys(['optimizer', 'epoch', 'state_dict', 'best_prec1'])
-state_dict = torch2to3.byte_convert(model['state_dict'])
+state_dict = torch2to3.byte_convert(model)['state_dict']
 torch2to3.save_model(AlexNet, state_dict)
 ```
