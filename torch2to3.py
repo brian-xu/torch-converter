@@ -1,3 +1,5 @@
+import io
+
 import torch
 from torch import nn
 
@@ -21,6 +23,12 @@ def byte_convert(model: dict) -> dict:
 
 def load_model(model_path: str) -> dict:
     return torch.load(model_path, encoding='bytes', map_location=device)
+
+
+def load_model2(model_path: str) -> nn.Module:
+    with open(model_path, 'rb') as f:
+        buffer = io.BytesIO(f.read())
+        return torch.load(buffer, map_location=device)
 
 
 def save_model(architecture: nn.Module, state_dict: dict) -> None:
