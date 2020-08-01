@@ -31,8 +31,7 @@ def load_model2(model_path: str) -> nn.Module:
         return torch.load(buffer, map_location=device)
 
 
-def save_model(architecture: nn.Module, state_dict: dict) -> None:
-    model = architecture().to(device)
+def save_model(model: nn.Module, state_dict: dict) -> None:
     model.load_state_dict(state_dict)
     model.eval()
-    torch.save(model, architecture.__name__ + '.pth')
+    torch.save(model, type(model).__name__ + '.pth')
